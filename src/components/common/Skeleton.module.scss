@@ -1,0 +1,36 @@
+.wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.outerBox {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  background-color: var(--color-grey-medium);
+  border-radius: 4px;
+}
+
+.innerBox {
+  position: absolute;
+  z-index: 40;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    to right,
+    var(--color-grey-medium),
+    var(--color-grey-light),
+    var(--color-grey-medium)
+  );
+  animation: shimmer 1200ms infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

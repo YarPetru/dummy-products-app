@@ -1,58 +1,99 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect, lazy, Suspense } from 'react';
 
-function App() {
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import BeatLoader from 'react-spinners/BeatLoader';
+
+import { Layout } from 'components/layout';
+import { PublicRoute, PrivateRoute } from 'components/routes';
+
+import { getIsLoggedIn } from 'store/auth';
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { login } from 'store/auth/auth-slice';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const ProductPage = lazy(() => import('pages/ProductPage'));
+const FormPage = lazy(() => import('pages/FormPage'));
+
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+
+const App: React.FC = () => {
+  // add first render check and getting user auth
+  const isLoggedIn = useAppSelector(getIsLoggedIn);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('auth-full-data')!);
+    if (data) {
+      dispatch(login({ id: data.user.uid, email: data.user.email }));
+      // setAuthState({ isLoggedIn: true, email: data.user.email });
+    }
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <Suspense
+        fallback={
+          <BeatLoader
+            cssOverride={{ textAlign: 'center', marginTop: '64px' }}
+            color="#158FFF"
+            size="16px"
+            margin="8px"
+          />
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route
+              path="/"
+              element={
+                <PublicRoute>
+                  <HomePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <PrivateRoute>
+                  <ProductPage />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/form"
+              element={
+                <PrivateRoute>
+                  <ProductPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
+          </Route>
+          <Route path="/*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
+      <ToastContainer theme="light" position="top-center" autoClose={5000} />
+    </>
   );
-}
+};
 
 export default App;

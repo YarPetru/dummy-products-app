@@ -1,0 +1,12 @@
+.errorWrapper {
+  margin: 0 auto;
+  padding: 20px 40px;
+  width: 50%;
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-yellow-light);
+}
+
+.errorText {
+  text-align: center;
+  font-weight: 700;
+}

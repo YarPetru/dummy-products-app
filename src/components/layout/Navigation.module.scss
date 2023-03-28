@@ -1,0 +1,110 @@
+.navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  font-size: 18px;
+
+  &__link:link,
+  &__link:visited {
+    color: inherit;
+    transition: var(--basic-transition);
+  }
+
+  &__link:hover {
+    color: var(--color-yellow-light);
+  }
+
+  &__link:active {
+    transform: translateY(1px);
+    color: var(--color-yellow-accent);
+  }
+}
+
+.activeLink:link,
+.activeLink:visited {
+  color: var(--color-yellow-light);
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.linksWrapper {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+
+  &__left {
+    margin-left: -64px;
+    gap: 24px;
+  }
+
+  &__right {
+    justify-self: right;
+  }
+
+  &__center {
+    justify-self: center;
+  }
+}
+
+.registerLink:link,
+.registerLink:visited {
+  position: relative;
+  z-index: 50;
+
+  padding: 6px 16px;
+
+  color: var(--color-yellow-light);
+  border: 1px solid var(--color-yellow-light);
+  border-radius: var(--border-radius-md);
+
+  overflow: hidden;
+  transition: var(--basic-transition);
+  transition-duration: 600ms;
+}
+
+.registerLink::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -10;
+  height: 0px;
+  width: 0%;
+
+  background-color: var(--color-yellow-light);
+  transition: height 500ms, width 500ms, left 500ms, top 500ms;
+  border-radius: var(--border-radius-sm);
+}
+
+.registerLink:hover {
+  color: var(--color-black);
+
+  &::after {
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.registerLink:active::after {
+  background-color: var(--color-yellow-accent);
+}
+
+.logoutBtn {
+  transition: var(--basic-transition);
+
+  &:hover {
+    color: var(--color-yellow-light);
+  }
+
+  &:active {
+    color: var(--color-yellow-accent);
+    transform: translateY(1px);
+  }
+}

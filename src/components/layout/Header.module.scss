@@ -1,0 +1,9 @@
+// "text-white py-22px border-b border-white-10 font-bold gradient"
+
+.header {
+  padding: 24px 0px;
+  font-weight: 500;
+  color: var(--color-white);
+  background: linear-gradient(to right, #302f32 10%, #242424 80%);
+  border-bottom: 1px solid var(--color-white-30);
+}

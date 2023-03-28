@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,400;0,500;0,600;0,700;0,800;1,200;1,400;1,600;1,700;1,800&display=swap');
+
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+// @layer base {
+//   *,
+//   *::before,
+//   *::after {
+//     box-sizing: border-box;
+//   }
+
+//   html {
+//     font-family: 'Lato', sans-serif;
+//     font-size: 'sm';
+//     scroll-behavior: smooth;
+//   }
+
+//   h1 {
+//     @apply text-5xl text-white;
+//   }
+//   h2 {
+//     @apply text-4xl text-black;
+//   }
+//   h3 {
+//     @apply text-3xl text-black;
+//   }
+//   h4 {
+//     @apply text-2xl text-black;
+//   }
+//   h5 {
+//     @apply text-xl text-black;
+//   }
+//   h6 {
+//     @apply text-lg;
+//   }
+//   section {
+//     @apply pt-12 pb-12;
+//   }
+
+//   .text-main-body {
+//     @apply text-sm text-grey-medium;
+//   }
+
+//   .circle-icon-wrapper {
+//     @apply w-12 h-12 rounded-full text-blue-accent bg-blue-light flex items-center justify-center;
+//   }
+
+//   .arrow-button {
+//     @apply w-9 h-9 flex items-center justify-center rounded-full;
+//   }
+
+//   .mask {
+//     mask-image: linear-gradient(
+//       to left,
+//       transparent,
+//       #000 5%,
+//       #000 95%,
+//       transparent
+//     );
+//   }
+// }
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+  color: var(--color-black);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+section {
+  background: linear-gradient(to right, #302f32 10%, #242424 80%);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  font-style: normal;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+:root {
+  /* Colors */
+  --color-black: #111110;
+  --color-white: #fff;
+  --color-white-30: rgba(255, 255, 255, 0.3);
+
+  --color-grey-dark: #2f2f2e;
+  --color-grey-medium: #939393;
+  --color-grey-light: #f2f2f4;
+
+  --color-blue-accent: #158fff;
+  --color-blue-light: #d4dfff;
+
+  --color-yellow-accent: #e3ad09;
+  --color-yellow-light: #f2c94c;
+
+  /* Transition */
+  --basic-transition: all 250ms ease-in-out;
+
+  /* borders */
+  --border-radius-circle: 50%;
+  --border-radius-lg: 16px;
+  --border-radius-md: 8px;
+  --border-radius-sm: 4px;
+}
