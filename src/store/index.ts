@@ -1,20 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { persistStore } from 'redux-persist';
 
 import { authReducer } from './auth';
 import { productsReducer } from './products';
 
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   // whitelist: ['token'],
-// };
-
 export const store = configureStore({
   reducer: {
-    // auth: persistReducer(authPersistConfig, authReducer),
     products: productsReducer,
     auth: authReducer,
   },

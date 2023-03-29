@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { signOut, getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
-import { useSelector } from 'react-redux';
+
 import { getIsLoggedIn } from 'store/auth';
 import { logout } from 'store/auth/auth-slice';
-
 import { useAppDispatch } from 'hooks/redux-hooks';
 import logo from 'images/sheepfish-logo.png';
 import s from './Navigation.module.scss';

@@ -10,8 +10,6 @@ export const useFilteredData = (
 ) => {
   const { data: products } = useAppSelector(getProducts);
 
-  // let sortedAndFilteredProducts: IProduct[];
-
   if (!!products) {
     const finalProductslist = products.filter((product: IProduct) => {
       if (!currentFilter) return products;

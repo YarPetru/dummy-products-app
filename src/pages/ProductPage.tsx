@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import {
-  NewProductForm,
-  ProductsTable,
-  SearchPanel,
-} from 'components/products';
+import React, { useState } from 'react';
+import { ProductsTable, SearchPanel } from 'components/products';
 import { useFilteredData } from 'hooks/use-filtered-data';
-// import { byField } from 'helpers/sort-by-field';
 
 const ProductPage: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -26,8 +21,6 @@ const ProductPage: React.FC = () => {
 
   const handleSortBtnClick = (columnName: string) => {
     setSortBy(columnName);
-    console.log('sortBy', sortBy);
-    console.log('isSortOrderDESC', isSortOrderDESC);
 
     if (sortBy === columnName) {
       setIsSortOrderDESC(prev => !prev);
@@ -36,23 +29,6 @@ const ProductPage: React.FC = () => {
     } else {
       setIsSortOrderDESC(false);
     }
-  };
-
-  // filtering
-  const [isFilterOn, setIsFilterOn] = useState<boolean>(false);
-  const [filteredColumn, setFilteredColumn] = useState<string>('');
-
-  const handleFilterBtnClick = (columnName: string) => {
-    // setFilteredColumn(columnName);
-    // setIsFilterOn(!isFilterOn);
-    if (filteredColumn === columnName) {
-      setFilteredColumn('');
-      setIsFilterOn(false);
-    } else {
-      setFilteredColumn(columnName);
-      setIsFilterOn(true);
-    }
-    // console.log(filteredColumn);
   };
 
   return (
@@ -65,10 +41,8 @@ const ProductPage: React.FC = () => {
         <ProductsTable
           products={filteredProducts}
           onSortBtnClick={handleSortBtnClick}
-          onFilterBtnClick={handleFilterBtnClick}
         />
       )}
-      <NewProductForm />
     </>
   );
 };

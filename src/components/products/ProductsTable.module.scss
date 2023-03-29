@@ -1,10 +1,9 @@
-thead {
-  width: 100%;
-  border-radius: var(--border-radius-sm);
+.section {
+  padding: 24px 0;
 }
 
-tbody {
-  // width: 100%;
+thead {
+  width: 100%;
 }
 
 .table {
@@ -12,26 +11,38 @@ tbody {
   width: 100%;
   border-collapse: collapse;
 
+  font-size: 16px;
+  background-color: var(--color-grey-light);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--box-shadow-main);
+
   &__caption {
-    font-size: 24px;
     margin-top: 10px;
     padding: 4px;
-    caption-side: bottom;
-    // text-align: right;
+    caption-side: top;
+    text-align: left;
+    font-size: 28px;
+    font-weight: 200;
+    font-style: italic;
+    color: var(--color-white);
   }
 
   &__cell {
     text-align: center;
     padding: 4px 10px;
-    border: 1px solid greenyellow;
+  }
+
+  &__row {
+    border-bottom: 1px solid var(--color-grey-dark-20);
   }
 
   &__headerRow {
-    border-bottom: 1px solid firebrick;
+    border-bottom: 2px solid var(--color-grey-dark-20);
   }
 
   &__headerRow &__cell {
-    color: blueviolet;
+    color: var(--color-grey-dark);
   }
 
   thead &__cell:nth-child(1) {

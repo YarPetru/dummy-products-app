@@ -1,67 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,400;0,500;0,600;0,700;0,800;1,200;1,400;1,600;1,700;1,800&display=swap');
 
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
-
-// @layer base {
-//   *,
-//   *::before,
-//   *::after {
-//     box-sizing: border-box;
-//   }
-
-//   html {
-//     font-family: 'Lato', sans-serif;
-//     font-size: 'sm';
-//     scroll-behavior: smooth;
-//   }
-
-//   h1 {
-//     @apply text-5xl text-white;
-//   }
-//   h2 {
-//     @apply text-4xl text-black;
-//   }
-//   h3 {
-//     @apply text-3xl text-black;
-//   }
-//   h4 {
-//     @apply text-2xl text-black;
-//   }
-//   h5 {
-//     @apply text-xl text-black;
-//   }
-//   h6 {
-//     @apply text-lg;
-//   }
-//   section {
-//     @apply pt-12 pb-12;
-//   }
-
-//   .text-main-body {
-//     @apply text-sm text-grey-medium;
-//   }
-
-//   .circle-icon-wrapper {
-//     @apply w-12 h-12 rounded-full text-blue-accent bg-blue-light flex items-center justify-center;
-//   }
-
-//   .arrow-button {
-//     @apply w-9 h-9 flex items-center justify-center rounded-full;
-//   }
-
-//   .mask {
-//     mask-image: linear-gradient(
-//       to left,
-//       transparent,
-//       #000 5%,
-//       #000 95%,
-//       transparent
-//     );
-//   }
-// }
-
 *,
 *::before,
 *::after {
@@ -138,6 +76,7 @@ button {
   --color-white-30: rgba(255, 255, 255, 0.3);
 
   --color-grey-dark: #2f2f2e;
+  --color-grey-dark-20: rgba(47, 47, 46, 0.2);
   --color-grey-medium: #939393;
   --color-grey-light: #f2f2f4;
 
@@ -148,11 +87,16 @@ button {
   --color-yellow-light: #f2c94c;
 
   /* Transition */
-  --basic-transition: all 250ms ease-in-out;
+  --basic-transition: all 330ms ease-in-out;
 
   /* borders */
   --border-radius-circle: 50%;
   --border-radius-lg: 16px;
   --border-radius-md: 8px;
   --border-radius-sm: 4px;
+
+  /* shadows */
+  --box-shadow-main: 0 2rem 4rem rgba(0, 0, 0, 0.7);
+  --box-shadow-mid: 0 1rem 4rem rgba(0, 0, 0, 0.25);
+  --box-shadow-light: 0 1rem 3rem rgba(0, 0, 0, 0.1);
 }

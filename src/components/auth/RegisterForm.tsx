@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
-import { TbEye, TbEyeOff } from 'react-icons/tb';
-import BeatLoader from 'react-spinners/BeatLoader';
 import { toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
+import { TbEye, TbEyeOff } from 'react-icons/tb';
+import BeatLoader from 'react-spinners/BeatLoader';
 
-import classNames from 'classnames';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { login } from 'store/auth/auth-slice';
 import { useAppDispatch } from 'hooks/redux-hooks';
 
 import Container from 'components/layout/Container';
-
-// import { useAuthState, useFetchingUserState } from 'store/store';
+import s from './RegisterForm.module.scss';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -50,6 +48,7 @@ const initialValues = {
 
 const RegisterForm: React.FC = () => {
   const [isFetchingUser, setIsFetchingUser] = useState<boolean>(false);
+  const [isVisiblePassword, setIsVisiblePassword] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
@@ -91,29 +90,12 @@ const RegisterForm: React.FC = () => {
       });
   };
 
-  const [isVisiblePassword, setIsVisiblePassword] = useState(false);
-
   const toggleEye = () => {
     setIsVisiblePassword(!isVisiblePassword);
   };
 
-  const openEyeClasses = classNames(
-    'absolute right-2 top-10 text-grey-dark transition-all',
-    {
-      'opacity-0': isVisiblePassword,
-    }
-  );
-
-  const closeEyeClasses = classNames(
-    'absolute right-2 top-10 text-grey-dark transition-all',
-    {
-      'opacity-0': !isVisiblePassword,
-    }
-  );
-
   return (
-    <>
-      <div className="gradient gradient-container"></div>
+    <section className={s.section}>
       <Container>
         <Formik
           initialValues={initialValues}
@@ -122,16 +104,13 @@ const RegisterForm: React.FC = () => {
         >
           {({ isValid, touched }) => {
             return (
-              <Form
-                name="LoginForm"
-                className="relative flex flex-col justify-center text-white w-96"
-              >
-                <div className="relative flex flex-col mb-5">
-                  <label htmlFor="email" className="mb-2">
-                    Email <span className="text-yellow-accent">*</span>
+              <Form name="RegisterForm" className={s.form}>
+                <div className={s.fieldsWrapper}>
+                  <label htmlFor="email" className={s.label}>
+                    Email <span>*</span>
                   </label>
                   <Field
-                    className="px-3 py-2 font-medium text-black outline-none rounded"
+                    className={s.field}
                     id="email"
                     name="email"
                     type="text"
@@ -141,39 +120,41 @@ const RegisterForm: React.FC = () => {
                   <ErrorMessage
                     name="email"
                     component="div"
-                    className="text-sm text-yellow-accent"
+                    className={s.validationError}
                   />
                 </div>
 
-                <div className="relative flex flex-col mb-5">
-                  <label htmlFor="password" className="mb-2">
-                    Password <span className="text-yellow-accent">*</span>
+                <div className={s.fieldsWrapper}>
+                  <label htmlFor="password" className={s.label}>
+                    Password <span>*</span>
                   </label>
                   <Field
-                    className="relative px-3 py-2 font-medium text-black outline-none rounded"
+                    className={s.field}
                     id="password"
                     name="password"
                     type={isVisiblePassword ? 'text' : 'password'}
                     placeholder="enter your password"
                     autoComplete="off"
                   />
-                  <TbEyeOff className={closeEyeClasses} onClick={toggleEye} />
-                  <TbEye className={openEyeClasses} onClick={toggleEye} />
+                  {isVisiblePassword ? (
+                    <TbEyeOff className={s.eye} onClick={toggleEye} size={18} />
+                  ) : (
+                    <TbEye className={s.eye} onClick={toggleEye} size={18} />
+                  )}
 
                   <ErrorMessage
                     name="password"
                     component="div"
-                    className="text-sm text-yellow-accent"
+                    className={s.validationError}
                   />
                 </div>
 
-                <div className="relative flex flex-col mb-5">
-                  <label htmlFor="repeatPassword" className="mb-2">
-                    Password confirmation{' '}
-                    <span className="text-yellow-accent">*</span>
+                <div className={s.fieldsWrapper}>
+                  <label htmlFor="repeatPassword" className={s.label}>
+                    Password confirmation <span>*</span>
                   </label>
                   <Field
-                    className="relative px-3 py-2 font-medium text-black outline-none rounded"
+                    className={s.field}
                     id="repeatPassword"
                     name="repeatPassword"
                     type="password"
@@ -184,17 +165,14 @@ const RegisterForm: React.FC = () => {
                   <ErrorMessage
                     name="repeatPassword"
                     component="div"
-                    className="text-sm text-yellow-accent"
+                    className={s.validationError}
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={(!touched.email && !touched.password) || !isValid}
-                  className=" font-normal text-yellow-light border border-yellow-light rounded px-4 py-6px overflow-hidden hover:text-black  transition-all duration-600 relative z-50 
-                  disabled:after:hidden disabled:border-white-15 disabled:text-white-15
-                  after:h-0  after:w-full after:absolute after:left-0 after:top-1/2 after:-z-10 after:bg-yellow-light active:after:bg-yellow-accent 
-                  hover:after:content-[''] hover:after:w-full hover:after:left-0 hover:after:top-0 hover:after:block hover:after:h-full  after:transition-all after:duration-600"
+                  className={s.submitBtn}
                 >
                   {isFetchingUser ? (
                     <BeatLoader
@@ -208,12 +186,9 @@ const RegisterForm: React.FC = () => {
                     'SignUp'
                   )}
                 </button>
-                <div className="flex justify-between mt-5">
+                <div className={s.formFooter}>
                   <p>Are you already registered?</p>
-                  <Link
-                    className="text-yellow-light font-semibold hover:underline transition-all"
-                    to="/login"
-                  >
+                  <Link to="/login" className={s.formFooter__link}>
                     Login
                   </Link>
                 </div>
@@ -222,7 +197,7 @@ const RegisterForm: React.FC = () => {
           }}
         </Formik>
       </Container>
-    </>
+    </section>
   );
 };
 

@@ -3,12 +3,9 @@ export interface IAuth {
   user: {
     id: string | null;
     email: string | null;
-    // token: string | null;
   };
   token?: string | null;
   isLoggedIn: boolean;
-  // isFetchingUser: boolean;
-  // isPending: boolean;
 }
 
 export interface IUserState {
@@ -17,6 +14,13 @@ export interface IUserState {
 }
 
 // --- products
+export interface SerializedError {
+  name?: string;
+  message?: string;
+  stack?: string;
+  code?: string;
+}
+
 export interface IProduct {
   id: number;
   title: string;
@@ -31,27 +35,17 @@ export interface IProduct {
   images: string[];
 }
 
-export interface SerializedError {
-  name?: string;
-  message?: string;
-  stack?: string;
-  code?: string;
-}
-
 export interface IProductState {
   data: IProduct[];
+  newProduct: IProduct | null;
+  deletedProduct: null;
   isLoading: boolean;
   error: null | SerializedError;
 }
 
-//        "id": 1,
-//       "title": "iPhone 9",
-//       "description": "An apple mobile which is nothing like apple",
-//       "price": 549,
-//       "discountPercentage": 12.96,
-//       "rating": 4.69,
-//       "stock": 94,
-//       "brand": "Apple",
-//       "category": "smartphones",
-//       "thumbnail": "...",
-//       "images": ["...", "...", "..."]
+export interface INewProduct {
+  title: string;
+  author: string;
+  year: number | '';
+  rating: number | '';
+}

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Container } from 'components/layout';
-import Greeting from 'components/home/Greeting';
+import { Greeting } from 'components/home';
 
 const HomePage: React.FC = () => {
   return (
