@@ -34,7 +34,11 @@ all pages and get course details and lessons
 
 for authorization. Email authorization is added, you should to create an account
 on Register page and use it for further auth in Login page to get access to all
-pages of the APP.
+pages of the APP. For test authorization wo registration you can use test
+credential to LogIn:
+
+- email: test@test.com
+- pass: test@test.com
 
 ## Additional libraries
 
