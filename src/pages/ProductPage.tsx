@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAppDispatch } from 'hooks/redux-hooks';
+
 import { ProductsTable, SearchPanel } from 'components/products';
 import { useFilteredData } from 'hooks/use-filtered-data';
+import { DeleteProductForm } from 'components/product-forms';
+import { fetchProducts } from 'store/products';
 
 const ProductPage: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -8,6 +12,12 @@ const ProductPage: React.FC = () => {
   const [isSortOrderDESC, setIsSortOrderDESC] = useState<boolean | undefined>(
     undefined
   );
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   const filteredProducts = useFilteredData(
     searchValue,
@@ -43,6 +53,7 @@ const ProductPage: React.FC = () => {
           onSortBtnClick={handleSortBtnClick}
         />
       )}
+      <DeleteProductForm />
     </>
   );
 };

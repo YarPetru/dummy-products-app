@@ -29,7 +29,7 @@ const DeleteProductForm: React.FC = () => {
     actions.resetForm();
   };
   return (
-    <section className={s.section}>
+    <section id='delete-form' className={s.section}>
       <Container>
         <Formik
           initialValues={initialValues}

@@ -6,7 +6,6 @@ import BeatLoader from 'react-spinners/BeatLoader';
 
 import { useAppDispatch } from 'hooks/redux-hooks';
 import { login } from 'store/auth/auth-slice';
-import { fetchProducts } from 'store/products';
 import { PublicRoute, PrivateRoute } from 'components/routes';
 import { Layout } from 'components/layout';
 
@@ -20,10 +19,6 @@ const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const [firstRenderEnded, setFirstRenderEnded] = useState<boolean>(false);
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('auth-full-data')!);

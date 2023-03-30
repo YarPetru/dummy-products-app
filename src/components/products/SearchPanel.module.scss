@@ -1,8 +1,15 @@
 .section {
   padding: 56px 0 0;
 }
+.panelWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .form {
+  width: 50%;
+
   display: flex;
   align-items: center;
 
@@ -23,4 +30,23 @@
 .iconWrapper {
   margin-left: -44px;
   color: var(--color-blue-accent);
+}
+
+.anchor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 24px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-blue-accent);
+  background-color: var(--color-grey-light);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-sm);
+  transition: var(--basic-transition);
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--color-blue-accent);
+  }
 }
