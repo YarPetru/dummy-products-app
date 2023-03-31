@@ -5,6 +5,7 @@ import { ProductsTable, SearchPanel } from 'components/products';
 import { useFilteredData } from 'hooks/use-filtered-data';
 import { DeleteProductForm } from 'components/product-forms';
 import { fetchProducts } from 'store/products';
+import { IColumnTitles, columnsTitles } from 'types/types';
 
 const ProductPage: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -12,6 +13,10 @@ const ProductPage: React.FC = () => {
   const [isSortOrderDESC, setIsSortOrderDESC] = useState<boolean | undefined>(
     undefined
   );
+  const [currentFilterColumn, setCurrentFilterColumn] = useState<
+    IColumnTitles | ''
+  >('');
+  const [, setCurrentFilterValue] = useState<string>('');
 
   const dispatch = useAppDispatch();
 
@@ -41,15 +46,42 @@ const ProductPage: React.FC = () => {
     }
   };
 
+  const filterValues = filteredProducts?.map(product => {
+    if (currentFilterColumn !== '') {
+      return String(product[currentFilterColumn]);
+    } else {
+      return '';
+    }
+  });
+
+  const uniqueFilterValues = filterValues?.filter(
+    (value, idx, arr) => arr.indexOf(value) === idx
+  );
+
+  const handleColSelectChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    setCurrentFilterColumn(e.currentTarget.value as IColumnTitles | '');
+  };
+
+  const handleFilterValueSelectChange = (
+    e: React.FormEvent<HTMLSelectElement>
+  ) => {
+    setCurrentFilterValue(e.currentTarget.value);
+  };
+
   return (
     <>
       <SearchPanel
         searchValue={searchValue}
+        filterColumnsNames={columnsTitles}
+        filterColumnValues={uniqueFilterValues}
         handleInputChange={handleInputChange}
+        onColumnSelectChange={handleColSelectChange}
+        onFilterValueSelectChange={handleFilterValueSelectChange}
       />
       {!!filteredProducts && (
         <ProductsTable
           products={filteredProducts}
+          columnsNames={columnsTitles}
           onSortBtnClick={handleSortBtnClick}
         />
       )}

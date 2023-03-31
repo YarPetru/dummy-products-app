@@ -26,12 +26,9 @@ export interface IProduct {
   title: string;
   description: string;
   price: number;
-  discountPercentage: number;
   rating: number;
   stock: number;
-  brand: string;
   category: string;
-  thumbnail: string;
   images: string[];
 }
 
@@ -49,3 +46,34 @@ export interface INewProduct {
   year: number | '';
   rating: number | '';
 }
+
+export enum columnTitlesType {
+  id,
+  title,
+  description,
+  price,
+  images,
+  rating,
+  stock,
+  category,
+}
+
+export type IColumnTitles = keyof typeof columnTitlesType;
+
+export const columnsTitles = [
+  'id',
+  'title',
+  'description',
+  'price',
+  'images',
+  'rating',
+  'stock',
+  'category',
+] as const;
+
+export type ITitles = typeof columnsTitles;
+
+// export interface Activity {
+//   id?: string;
+//   type: Item;
+// }

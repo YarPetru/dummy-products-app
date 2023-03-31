@@ -3,13 +3,16 @@
 }
 .panelWrapper {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  gap: 24px;
   align-items: center;
 }
 
 .form {
-  width: 50%;
+  // width: 50%;
 
+  flex-basis: 30%;
+  flex-shrink: 1;
   display: flex;
   align-items: center;
 
@@ -32,10 +35,42 @@
   color: var(--color-blue-accent);
 }
 
-.anchor {
+.filtersWrapper {
+  flex-basis: 60%;
+  flex-shrink: 1;
+}
+
+.filterLabel {
   display: flex;
   align-items: center;
+  color: var(--color-white);
+  font-size: 20px;
+
+  & select {
+    margin-left: 20px;
+    min-width: 40px;
+    max-width: 400px;
+    height: 50px;
+
+    font-size: 20px;
+    background-color: var(--color-grey-light);
+    border-radius: var(--border-radius-sm);
+    outline: none;
+  }
+}
+
+.anchorWrapper {
+  flex-basis: 20%;
+  flex-shrink: 1;
+  justify-self: end;
+}
+
+.anchor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 12px;
+  margin-left: auto;
   padding: 8px 24px;
   font-size: 20px;
   font-weight: 500;

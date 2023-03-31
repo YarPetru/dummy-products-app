@@ -5,7 +5,7 @@ import s from './ProductsTable.module.scss';
 import { useAppSelector } from 'hooks/redux-hooks';
 import { getProducts } from 'store/products';
 import { ErrorMessage, Skeleton } from 'components/common';
-import { IProduct } from 'types/types';
+import { IProduct, ITitles } from 'types/types';
 
 interface IBtnClick {
   (columnName: string): void;
@@ -13,27 +13,18 @@ interface IBtnClick {
 
 interface IProductsTable {
   products: IProduct[];
+  columnsNames: ITitles;
   onSortBtnClick: IBtnClick;
 }
 
-const headerTitles = [
-  'id',
-  'title',
-  'description',
-  'price',
-  'images',
-  'rating',
-  'stock',
-  'category',
-];
-
 const ProductsTable: React.FC<IProductsTable> = ({
   products,
+  columnsNames,
   onSortBtnClick,
 }) => {
   const { isLoading, error } = useAppSelector(getProducts);
 
-  const tableHeaderContent = headerTitles.map(item => {
+  const tableHeaderContent = columnsNames.map(item => {
     return (
       <th scope="col" className={s.table__cell} key={item}>
         <div className={s.cellContentWrapper}>

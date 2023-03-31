@@ -4,7 +4,7 @@ import { IProduct } from 'types/types';
 import { byField } from 'helpers/sort-by-field';
 
 export const useFilteredData = (
-  currentFilter: string,
+  searchValue: string,
   sortBy: string = 'id',
   desc: boolean | undefined
 ) => {
@@ -12,11 +12,11 @@ export const useFilteredData = (
 
   if (!!products) {
     const finalProductslist = products.filter((product: IProduct) => {
-      if (!currentFilter) return products;
+      if (!searchValue) return products;
       else
         return (
-          product.title.toLowerCase().includes(currentFilter.toLowerCase()) ||
-          product.category.toLowerCase().includes(currentFilter.toLowerCase())
+          product.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+          product.category.toLowerCase().includes(searchValue.toLowerCase())
         );
     });
     if (desc === undefined) {
