@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid';
 import { getIsLoggedIn } from 'store/auth';
 import { logout } from 'store/auth/auth-slice';
 import { useAppDispatch } from 'hooks/redux-hooks';
-import logo from 'images/sheepfish-logo.png';
+import logo from 'images/logo.png';
 import s from './Navigation.module.scss';
 
 const Navigation: React.FC = () => {
