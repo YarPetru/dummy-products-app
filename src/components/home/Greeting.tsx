@@ -7,7 +7,7 @@ const Greeting: React.FC = () => {
   return (
     <section className={s.section}>
       <Container>
-        <h1 className={s.heading}>Wellcome to the YPI products</h1>
+        <h1 className={s.heading}>Welcome to the YPI products</h1>
         <h2 className={s.description}>
           This app allows you to view a list of{' '}
           <Link to="/products"> available products</Link>, as well as add your{' '}
