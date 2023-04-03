@@ -1,4 +1,6 @@
-## To start immediately
+## To start dev mode immediately
+
+### clone the repository
 
 ### add file ".env.local" to the root project directory
 
@@ -56,18 +58,16 @@ credential to LogIn:
 
 ## Briefly about the App
 
-The main functionality of the application works as expected.
-
-The application allows you to work with data after authorization. After
-authorization, your credantials are added to the local storage, so if you
-refresh the page, you will not be unexpectedly unlogged. But, of course, you can
-log out and the local storage will be cleared.
+The application allows you to work with fake products from
+https://dummyjson.com/ after authorization. After authorization, your
+credantials are added to the local storage, so if you refresh the page, you will
+not be unexpectedly unlogged. But, of course, you can log out and the local
+storage will be cleared.
 
 The Products page implements a table with the products list, product search by
-name or category, sorting by each column, and product deletion. Most part for
-the filter by data in column is implemented - selections with correct data are
-already added to the panel. Loading state of the table realized using Skeleton
-for better UX.
+name or category, sorting by each column, filtering and product deletion.
+Loading state of the table realized using Skeleton for better UX.
 
-On the Form page you can add your own product, as far as the mock allows. So you
-get a notification with the Title of the added product.
+On the Form page you can add your own product, as far as the
+[mock](https://dummyjson.com/docs/products) allows. So you get a notification
+with the Title of the added product.
