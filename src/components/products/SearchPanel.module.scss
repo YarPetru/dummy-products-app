@@ -57,6 +57,10 @@
     border-radius: var(--border-radius-sm);
     outline: none;
   }
+
+  & select:nth-child(2) {
+    width: 100%;
+  }
 }
 
 .anchorWrapper {

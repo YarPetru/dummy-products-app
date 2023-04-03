@@ -16,7 +16,7 @@ const ProductPage: React.FC = () => {
   const [currentFilterColumn, setCurrentFilterColumn] = useState<
     IColumnTitles | ''
   >('');
-  const [, setCurrentFilterValue] = useState<string>('');
+  const [currentFilterValue, setCurrentFilterValue] = useState<string>('');
 
   const dispatch = useAppDispatch();
 
@@ -27,7 +27,9 @@ const ProductPage: React.FC = () => {
   const filteredProducts = useFilteredData(
     searchValue,
     sortBy,
-    isSortOrderDESC
+    isSortOrderDESC,
+    currentFilterColumn,
+    currentFilterValue
   );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,11 +57,12 @@ const ProductPage: React.FC = () => {
   });
 
   const uniqueFilterValues = filterValues?.filter(
-    (value, idx, arr) => arr.indexOf(value) === idx
+    (value, idx, arr) => value !== '' && arr.indexOf(value) === idx
   );
 
   const handleColSelectChange = (e: React.FormEvent<HTMLSelectElement>) => {
     setCurrentFilterColumn(e.currentTarget.value as IColumnTitles | '');
+    setCurrentFilterValue('');
   };
 
   const handleFilterValueSelectChange = (

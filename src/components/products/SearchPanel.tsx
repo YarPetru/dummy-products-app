@@ -67,7 +67,9 @@ const SearchPanel: React.FC<ISearchPanel> = ({
                 name="column-values"
                 id="column-values"
                 onChange={onFilterValueSelectChange}
+                defaultValue=""
               >
+                <option value="">none</option>
                 {filterColumnValues?.map(value => {
                   return (
                     <option value={value} key={value}>
